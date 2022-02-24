@@ -21,7 +21,7 @@ function cartReducer(state, action) {
 function CartProvider(props) {
     const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
-    function addItemToCartHandler(item) {
+    function addItemToCartHandler(item) { //zde je vložen objekt item, vkládáme v MealItem.js funkcí addToCartHandler
         dispatchCartAction({ typeIdentif: 'ADD_ITEM', item: item }); //aktualizují se data s identifikátorem akce
     }
 
