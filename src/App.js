@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
+import CartProvider from "./store/CartProvider";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false); //aktualizace dat v komponentě
@@ -14,7 +15,7 @@ function App() {
   }
 
   return (
-    <React.Fragment>
+    <CartProvider>
       {/* podmínka pokud je cartIsShown == true tak <Cart /> */}
       {cartIsShown && <Cart onClose={hideCartHandler} />} {/* relativní pozice modálního okna => bude přesunuto (skrze Portal) do divu #overlays
       pointer pro funkci - poslání hideCartHandler() do další comp */}
@@ -22,7 +23,7 @@ function App() {
       <main>
         <Meals />
       </main>
-    </React.Fragment>
+    </CartProvider>
   );
 }
 
