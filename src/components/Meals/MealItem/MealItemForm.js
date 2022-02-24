@@ -16,7 +16,7 @@ function MealItemForm(props) {
             setAmountIsValid(false);
             return;
         }
-        props.onAddToCart(enteredAmountNum);
+        props.onAddToCart(enteredAmountNum); //vkládáme do cart v MealItem.js funkcí addToCartHandler() -> přes context vloží item
     }
 
     return (
