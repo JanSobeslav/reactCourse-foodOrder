@@ -9,7 +9,7 @@ function Header(props) {
          <React.Fragment>  {/* fragment se využívá proto, aby nevznikaly obalové divy -> zpomalení aplikace */}
             <header className={classes.header}> {/*CSS Module přistoupení k názvu třídy */}
                 <h1>ReactMeals</h1>
-                <HeaderCartButton />
+                <HeaderCartButton onClick={props.onShowCart}/> {/* funkce showCartHandler() s názvem onShowCart je poslána dál pod názvem onClick */}
             </header>
             <div className={classes['main-image']}>  {/*CSS Module přistoupení k názvu pokud je nějak rozdělenen např. '-' */}
                 <img src={image} alt="Table full of delicious food!" />
