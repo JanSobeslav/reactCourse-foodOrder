@@ -8,8 +8,22 @@ const defaultCartState = { //základní stav -> při vytvoření
 
 function cartReducer(state, action) {
     if (action.typeIdentif === 'ADD_ITEM') {
-        const updatedItems = state.items.concat(action.item); //vezme se původní stav "state", vytvoří se nové pole a přidá nová položka action.item (concat)
         const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
+        const existingCartItemIndex = state.items.findIndex((item) => item.id === action.item.id);
+        const existingCartItem = state.items[existingCartItemIndex];
+        let updatedItems;
+
+        if (existingCartItem) {
+            const updatedItem = {
+                ...existingCartItem,
+                amount: existingCartItem.amount + action.item.amount
+            };
+            updatedItems = [...state.items];
+            updatedItems[existingCartItemIndex] = updatedItem;
+        } else {
+            updatedItems = state.items.concat(action.item); //vezme se původní stav "state", vytvoří se nové pole a přidá nová položka action.item (concat)
+        }
+       
         return {
             items: updatedItems,
             totalAmount: updatedTotalAmount
